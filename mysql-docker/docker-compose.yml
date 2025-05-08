@@ -5,7 +5,7 @@ services:
     container_name: mysql-mini-shop
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: your_password
+      MYSQL_ROOT_PASSWORD: sesac7mz
       MYSQL_DATABASE: mini_shop
     ports:
       - "3306:3306"
