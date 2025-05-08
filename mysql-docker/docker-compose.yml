@@ -1,0 +1,17 @@
+version: '3'
+services:
+  db:
+    image: mysql:latest
+    container_name: mysql-mini-shop
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: your_password
+      MYSQL_DATABASE: mini_shop
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./init:/docker-entrypoint-initdb.d  # 초기화 스크립트용 (mini_shop.sql 넣기)
+
+volumes:
+  mysql-data:

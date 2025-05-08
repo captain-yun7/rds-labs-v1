@@ -1,0 +1,57 @@
++----------------+       +---------------+
+| categories     |       | suppliers     |
++----------------+       +---------------+
+| PK: CategoryID |       | PK: SupplierID|
+| CategoryName   |       | SupplierName  |
+| Description    |       | ContactName   |
++----------------+       | Address       |
+       ▲                 | City          |
+       |                 | PostalCode    |
+       |                 | Country       |
+       |                 | Phone         |
+       |                 +---------------+
+       |                        ▲
+       |                        |
+       |                        |
+       |                        |
+       |     +------------------+
+       |     |
+       |     |
++------+-----+----+
+| products       |
++----------------+
+| PK: ProductID  |
+| ProductName    |
+| FK1: CategoryID|
+| FK2: SupplierID|
+| Unit           |
+| Price          |
++----------------+
+       ▲
+       |
+       |
++------+---------+        +--------------+
+| order_details  |<-------+ orders       |
++----------------+        +--------------+
+| PK: OrderDetailID|      | PK: OrderID  |
+| FK1: OrderID    |      | FK1: CustomerID|
+| FK2: ProductID  |      | FK2: EmployeeID|
+| Quantity       |      | FK3: ShipperID|
++----------------+        | OrderDate    |
+                         +--------------+
+                               ▲
+                               |
+                         +-----+--------+
+                         |              |
+                    +----+-----+  +-----+------+  +------------+
+                    | customers |  | employees |  | shippers   |
+                    +----------+  +-----------+  +------------+
+                    |PK: CustomerID| |PK: EmployeeID| |PK: ShipperID|
+                    |CustomerName|  |LastName    |  |ShipperName |
+                    |ContactName |  |FirstName   |  |Phone      |
+                    |Address     |  |BirthDate   |  +------------+
+                    |City        |  |Photo       |
+                    |PostalCode  |  |Notes       |
+                    |Country     |  |            |
+                    +------------+  +------------+
+``` 
