@@ -204,3 +204,24 @@ SELECT ProductName, Price FROM products WHERE CategoryID = 3 ORDER BY Price ASC 
 ```
 
 > 참고: WHERE 절은 다음 챕터에서 배우지만, 두 번째 예제에서는 간단하게 사용해 보았습니다. 
+
+## 추가 연습 문제
+
+다음 추가 문제를 풀어보세요:
+
+### 연습 1-12: 직원 정보 조회하기
+
+1. 직원(employees)의 이름(Name)과 생년월일(BirthDate)을 조회하세요.
+2. 직원(employees)을 이름(Name) 순으로 정렬하여 조회하세요.
+3. 가장 나이가 많은 직원 3명의 이름(Name)과 생년월일(BirthDate)을 조회하세요.
+
+```sql
+-- 답변 1
+SELECT Name, BirthDate FROM employees;
+
+-- 답변 2
+SELECT * FROM employees ORDER BY Name ASC;
+
+-- 답변 3
+SELECT Name, BirthDate FROM employees ORDER BY BirthDate ASC LIMIT 3;
+``` 
