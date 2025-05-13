@@ -21,16 +21,16 @@ USE `mini_shop`;
 --
 
 CREATE TABLE `categories` (
-  `CategoryID` int(11) NOT NULL,
-  `CategoryName` varchar(255) DEFAULT NULL,
-  `Description` varchar(255) DEFAULT NULL
+  `category_id` int(11) NOT NULL,
+  `category_name` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`CategoryID`, `CategoryName`, `Description`) VALUES
+INSERT INTO `categories` (`category_id`, `category_name`, `description`) VALUES
 (1, '음료', '생수, 커피, 차, 맥주 및 음료수'),
 (2, '양념/소스', '간장, 고추장, 된장, 소스 및 양념'),
 (3, '디저트/간식', '과자, 초콜릿, 빵 및 사탕'),
@@ -47,20 +47,20 @@ INSERT INTO `categories` (`CategoryID`, `CategoryName`, `Description`) VALUES
 --
 
 CREATE TABLE `customers` (
-  `CustomerID` int(11) NOT NULL,
-  `CustomerName` varchar(255) DEFAULT NULL,
-  `ContactName` varchar(255) DEFAULT NULL,
-  `Address` varchar(255) DEFAULT NULL,
-  `City` varchar(255) DEFAULT NULL,
-  `PostalCode` varchar(255) DEFAULT NULL,
-  `Country` varchar(255) DEFAULT NULL
+  `customer_id` int(11) NOT NULL,
+  `customer_name` varchar(255) DEFAULT NULL,
+  `contact_name` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `postal_code` varchar(255) DEFAULT NULL,
+  `country` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`CustomerID`, `CustomerName`, `ContactName`, `Address`, `City`, `PostalCode`, `Country`) VALUES
+INSERT INTO `customers` (`customer_id`, `customer_name`, `contact_name`, `address`, `city`, `postal_code`, `country`) VALUES
 (1, '강남마트', '김지영', '테헤란로 123', '서울', '06235', '대한민국'),
 (2, '부산식자재', '이민수', '해운대로 456', '부산', '48300', '대한민국'),
 (3, '인천푸드', '박서연', '송도대로 789', '인천', '21984', '대한민국'),
@@ -89,18 +89,18 @@ INSERT INTO `customers` (`CustomerID`, `CustomerName`, `ContactName`, `Address`,
 --
 
 CREATE TABLE `employees` (
-  `EmployeeID` int(11) NOT NULL,
-  `Name` varchar(255) DEFAULT NULL,
-  `BirthDate` date DEFAULT NULL,
-  `Photo` varchar(255) DEFAULT NULL,
-  `Notes` text
+  `employee_id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `birth_date` date DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `notes` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `employees`
 --
 
-INSERT INTO `employees` (`EmployeeID`, `Name`, `BirthDate`, `Photo`, `Notes`) VALUES
+INSERT INTO `employees` (`employee_id`, `name`, `birth_date`, `photo`, `notes`) VALUES
 (1, '김영수', '1980-05-20', 'EmpID1.pic', '10년 이상의 영업 경력, 다수의 영업 교육 이수 및 우수 영업사원 수상 경력, 고객 관계 유지 전문가'),
 (2, '이지은', '1985-07-15', 'EmpID2.pic', '신입사원 교육 프로그램 담당, 영어와 일본어 능통, 해외 영업팀 협업 프로젝트 리더'),
 (3, '박민준', '1978-03-10', 'EmpID3.pic', '마케팅팀 10년 근무 후 영업팀으로 이동, 데이터 분석 전문가, AI 기반 마케팅 전략 개발'),
@@ -119,18 +119,18 @@ INSERT INTO `employees` (`EmployeeID`, `Name`, `BirthDate`, `Photo`, `Notes`) VA
 --
 
 CREATE TABLE `orders` (
-  `OrderID` int(11) NOT NULL,
-  `CustomerID` int(11) DEFAULT NULL,
-  `EmployeeID` int(11) DEFAULT NULL,
-  `OrderDate` date DEFAULT NULL,
-  `ShipperID` int(11) DEFAULT NULL
+  `order_id` int(11) NOT NULL,
+  `customer_id` int(11) DEFAULT NULL,
+  `employee_id` int(11) DEFAULT NULL,
+  `order_date` date DEFAULT NULL,
+  `shipper_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`OrderID`, `CustomerID`, `EmployeeID`, `OrderDate`, `ShipperID`) VALUES
+INSERT INTO `orders` (`order_id`, `customer_id`, `employee_id`, `order_date`, `shipper_id`) VALUES
 (10248, 1, 5, '2023-07-04', 3),
 (10249, 3, 6, '2023-07-05', 1),
 (10250, 5, 4, '2023-07-08', 2),
@@ -199,17 +199,17 @@ INSERT INTO `orders` (`OrderID`, `CustomerID`, `EmployeeID`, `OrderDate`, `Shipp
 --
 
 CREATE TABLE `order_details` (
-  `OrderDetailID` int(11) NOT NULL,
-  `OrderID` int(11) DEFAULT NULL,
-  `ProductID` int(11) DEFAULT NULL,
-  `Quantity` int(11) DEFAULT NULL
+  `order_detail_id` int(11) NOT NULL,
+  `order_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `order_details`
 --
 
-INSERT INTO `order_details` (`OrderDetailID`, `OrderID`, `ProductID`, `Quantity`) VALUES
+INSERT INTO `order_details` (`order_detail_id`, `order_id`, `product_id`, `quantity`) VALUES
 (1, 10248, 11, 12),
 (2, 10248, 42, 10),
 (3, 10248, 72, 5),
@@ -386,19 +386,19 @@ INSERT INTO `order_details` (`OrderDetailID`, `OrderID`, `ProductID`, `Quantity`
 --
 
 CREATE TABLE `products` (
-  `ProductID` int(11) NOT NULL,
-  `ProductName` varchar(255) DEFAULT NULL,
-  `SupplierID` int(11) DEFAULT NULL,
-  `CategoryID` int(11) DEFAULT NULL,
-  `Unit` varchar(255) DEFAULT NULL,
-  `Price` double DEFAULT NULL
+  `product_id` int(11) NOT NULL,
+  `product_name` varchar(255) DEFAULT NULL,
+  `supplier_id` int(11) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  `unit` varchar(255) DEFAULT NULL,
+  `price` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`ProductID`, `ProductName`, `SupplierID`, `CategoryID`, `Unit`, `Price`) VALUES
+INSERT INTO `products` (`product_id`, `product_name`, `supplier_id`, `category_id`, `unit`, `price`) VALUES
 (1, '삼다수', 1, 1, '2L x 6병', 9800),
 (2, '맥콜', 1, 1, '500ml x 20캔', 15000),
 (3, '청정원 양조간장', 2, 2, '1.7L x 2병', 12500),
@@ -467,16 +467,16 @@ INSERT INTO `products` (`ProductID`, `ProductName`, `SupplierID`, `CategoryID`, 
 --
 
 CREATE TABLE `shippers` (
-  `ShipperID` int(11) NOT NULL,
-  `ShipperName` varchar(255) DEFAULT NULL,
-  `Phone` varchar(255) DEFAULT NULL
+  `shipper_id` int(11) NOT NULL,
+  `shipper_name` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `shippers`
 --
 
-INSERT INTO `shippers` (`ShipperID`, `ShipperName`, `Phone`) VALUES
+INSERT INTO `shippers` (`shipper_id`, `shipper_name`, `phone`) VALUES
 (1, '한진택배', '1588-0011'),
 (2, '대한통운', '1588-1255'),
 (3, '롯데택배', '1588-2121');
@@ -488,21 +488,21 @@ INSERT INTO `shippers` (`ShipperID`, `ShipperName`, `Phone`) VALUES
 --
 
 CREATE TABLE `suppliers` (
-  `SupplierID` int(11) NOT NULL,
-  `SupplierName` varchar(255) DEFAULT NULL,
-  `ContactName` varchar(255) DEFAULT NULL,
-  `Address` varchar(255) DEFAULT NULL,
-  `City` varchar(255) DEFAULT NULL,
-  `PostalCode` varchar(255) DEFAULT NULL,
-  `Country` varchar(255) DEFAULT NULL,
-  `Phone` varchar(255) DEFAULT NULL
+  `supplier_id` int(11) NOT NULL,
+  `supplier_name` varchar(255) DEFAULT NULL,
+  `contact_name` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `postal_code` varchar(255) DEFAULT NULL,
+  `country` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `suppliers`
 --
 
-INSERT INTO `suppliers` (`SupplierID`, `SupplierName`, `ContactName`, `Address`, `City`, `PostalCode`, `Country`, `Phone`) VALUES
+INSERT INTO `suppliers` (`supplier_id`, `supplier_name`, `contact_name`, `address`, `city`, `postal_code`, `country`, `phone`) VALUES
 (1, '제주음료', '고동현', '제주시 첨단로 123', '제주', '63309', '대한민국', '064-123-4567'),
 (2, '청정원', '박지훈', '서울시 중구 소공로 45', '서울', '04637', '대한민국', '02-777-8888'),
 (3, '농심식품', '이서연', '안양시 동안구 흥안대로 123', '안양', '14051', '대한민국', '031-333-4444'),
@@ -525,56 +525,56 @@ INSERT INTO `suppliers` (`SupplierID`, `SupplierName`, `ContactName`, `Address`,
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
-  ADD PRIMARY KEY (`CategoryID`);
+  ADD PRIMARY KEY (`category_id`);
 
 --
 -- Indexes for table `customers`
 --
 ALTER TABLE `customers`
-  ADD PRIMARY KEY (`CustomerID`);
+  ADD PRIMARY KEY (`customer_id`);
 
 --
 -- Indexes for table `employees`
 --
 ALTER TABLE `employees`
-  ADD PRIMARY KEY (`EmployeeID`);
+  ADD PRIMARY KEY (`employee_id`);
 
 --
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`OrderID`),
-  ADD KEY `CustomerID` (`CustomerID`),
-  ADD KEY `EmployeeID` (`EmployeeID`),
-  ADD KEY `ShipperID` (`ShipperID`);
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `customer_id` (`customer_id`),
+  ADD KEY `employee_id` (`employee_id`),
+  ADD KEY `shipper_id` (`shipper_id`);
 
 --
 -- Indexes for table `order_details`
 --
 ALTER TABLE `order_details`
-  ADD PRIMARY KEY (`OrderDetailID`),
-  ADD KEY `OrderID` (`OrderID`),
-  ADD KEY `ProductID` (`ProductID`);
+  ADD PRIMARY KEY (`order_detail_id`),
+  ADD KEY `order_id` (`order_id`),
+  ADD KEY `product_id` (`product_id`);
 
 --
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
-  ADD PRIMARY KEY (`ProductID`),
-  ADD KEY `CategoryID` (`CategoryID`),
-  ADD KEY `SupplierID` (`SupplierID`);
+  ADD PRIMARY KEY (`product_id`),
+  ADD KEY `category_id` (`category_id`),
+  ADD KEY `supplier_id` (`supplier_id`);
 
 --
 -- Indexes for table `shippers`
 --
 ALTER TABLE `shippers`
-  ADD PRIMARY KEY (`ShipperID`);
+  ADD PRIMARY KEY (`shipper_id`);
 
 --
 -- Indexes for table `suppliers`
 --
 ALTER TABLE `suppliers`
-  ADD PRIMARY KEY (`SupplierID`);
+  ADD PRIMARY KEY (`supplier_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -584,49 +584,49 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `CategoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `CustomerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `EmployeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `employee_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `OrderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10308;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10308;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `OrderDetailID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
+  MODIFY `order_detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `shippers`
 --
 ALTER TABLE `shippers`
-  MODIFY `ShipperID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `shipper_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
-  MODIFY `SupplierID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `supplier_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables
@@ -636,23 +636,23 @@ ALTER TABLE `suppliers`
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`CustomerID`) REFERENCES `customers` (`CustomerID`),
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`EmployeeID`) REFERENCES `employees` (`EmployeeID`),
-  ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`ShipperID`) REFERENCES `shippers` (`ShipperID`);
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`),
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`employee_id`),
+  ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`shipper_id`) REFERENCES `shippers` (`shipper_id`);
 
 --
 -- Constraints for table `order_details`
 --
 ALTER TABLE `order_details`
-  ADD CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`OrderID`) REFERENCES `orders` (`OrderID`),
-  ADD CONSTRAINT `order_details_ibfk_2` FOREIGN KEY (`ProductID`) REFERENCES `products` (`ProductID`);
+  ADD CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`),
+  ADD CONSTRAINT `order_details_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`);
 
 --
 -- Constraints for table `products`
 --
 ALTER TABLE `products`
-  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`CategoryID`) REFERENCES `categories` (`CategoryID`),
-  ADD CONSTRAINT `products_ibfk_2` FOREIGN KEY (`SupplierID`) REFERENCES `suppliers` (`SupplierID`);
+  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`),
+  ADD CONSTRAINT `products_ibfk_2` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`supplier_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
